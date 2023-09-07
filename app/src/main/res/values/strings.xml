@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">GorbatykDY_PR_31_v3</string>
+    <string name="registr">Регистрация</string>
+    <string name="title1">Введите ваш логин и пароль</string>
+    <string name="login">Логин</string>
+    <string name="psswd">Пароль</string>
+    <string name="auth">Войти</string>
+    <string name="back">В главное меню</string>
+    <string name="calc">Расчёт площади</string>
+    <string name="measurments">Введите кол-во метров</string>
+    <string name="calculate">Рассчитать</string>
+    <string name="result">Результат</string>
+</resources>
