@@ -46,41 +46,38 @@ class FlatPriceCalc : AppCompatActivity() {
             }
         }
         bindingClass.calculate.setOnClickListener {
-            Calc()
-            val intent = Intent(this@FlatPriceCalc, Calculation::class.java)
-            intent.putExtra("measurement", a_glob)
-            intent.putExtra("result", b_glob)
-            startActivity(intent)
-            startActivity(intent)
-            finish()
-        }
-        bindingClass.back.setOnClickListener {
-            val intent = Intent(this@FlatPriceCalc, Login_Screen::class.java)
-            startActivity(intent)
-            finish()
-        }
-    }
-    fun Calc(){
-        var measurements = bindingClass.measurements
-        if (measurements.text.toString().isNotEmpty()) {
-            var a : Int? = try { measurements.text.toString().toInt() } catch (e: NumberFormatException) { null }
-            if (a != null) {
-                if (a > 0) {
-                    a_glob = a
-                    when (bindingClass.spinner.selectedItemId.toInt()){
-                        0 -> { var b = 50000*a*1.4; bindingClass.result.setText("Результат\n"+b.toInt()+"₽"); b_glob = b }
-                        1 -> { var b = (50000*a).toDouble(); bindingClass.result.setText("Результат\n"+b.toInt()+"₽"); b_glob = b }
-                        2 -> { var b = 50000*a*0.8; bindingClass.result.setText("Результат\n"+b.toInt()+"₽"); b_glob = b }
-                        3 -> { var b = 50000*a*1.1; bindingClass.result.setText("Результат\n"+b.toInt()+"₽"); b_glob = b }
+            var measurements = bindingClass.measurements
+            if (measurements.text.toString().isNotEmpty()) {
+                var a : Int? = try { measurements.text.toString().toInt() } catch (e: NumberFormatException) { null }
+                if (a != null) {
+                    if (a > 0) {
+                        a_glob = a
+                        when (bindingClass.spinner.selectedItemId.toInt()){
+                            0 -> { var b = 50000*a*1.4; bindingClass.result.setText("Результат\n"+b.toInt()+"₽"); b_glob = b }
+                            1 -> { var b = (50000*a).toDouble(); bindingClass.result.setText("Результат\n"+b.toInt()+"₽"); b_glob = b }
+                            2 -> { var b = 50000*a*0.8; bindingClass.result.setText("Результат\n"+b.toInt()+"₽"); b_glob = b }
+                            3 -> { var b = 50000*a*1.1; bindingClass.result.setText("Результат\n"+b.toInt()+"₽"); b_glob = b }
+                        }
+                        val intent = Intent(this@FlatPriceCalc, Calculation::class.java)
+                        intent.putExtra("measurement", a_glob)
+                        intent.putExtra("result", b_glob)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(applicationContext,"Недопустимое значение",Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     Toast.makeText(applicationContext,"Недопустимое значение",Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(applicationContext,"Недопустимое значение",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Введите метраж помещения", Toast.LENGTH_SHORT).show()
             }
-        } else {
-            Toast.makeText(applicationContext, "Введите метраж помещения", Toast.LENGTH_SHORT).show()
+
+        }
+        bindingClass.back.setOnClickListener {
+            val intent = Intent(this@FlatPriceCalc, Login_Screen::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }

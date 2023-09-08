@@ -18,8 +18,8 @@ class Calculation : AppCompatActivity() {
         bindingClass.apply {
             val measurements = intent.getIntExtra("measurement",0).toString()
             val result = intent.getDoubleExtra("result", 0.0).toString()
-            bindingClass.measurements.setText("Кол-во метров\n"+measurements)
-            bindingClass.result.setText("Результат\n"+result)
+            bindingClass.measurements.setText("Кол-во метров\n"+measurements+"м^2")
+            bindingClass.result.setText("Результат\n"+result+"₽")
         }
 
         bindingClass.reg.setOnClickListener(){
